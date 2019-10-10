@@ -141,6 +141,16 @@ public class Base_sort {
     }
 
     public int[] heapAdjust(int[] nums,int len,int i){
+        /*
+         * @Author yanglk
+         * @Description //TODO
+         * @Date 11:00 2019/10/5
+         * @Param [nums, len, i]
+         * len 堆排序 截止位置
+         * i 要排序的节点
+         * @return int[]
+         **/
+
         int l=len/2-1;
         int id=2*i+1;
 
