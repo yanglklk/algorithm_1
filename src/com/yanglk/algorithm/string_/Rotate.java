@@ -6,13 +6,14 @@ public class Rotate {
     }
 
     public static void main(String[] args) {
-        String s="piglovesdog";
+        String s="   pig loves dog   ";
         char[] chars=s.toCharArray();
         Rotate rotate=new Rotate();
-        System.out.println(rotate.rotateWord2(chars,5));
+        rotate.rotateWord(chars);
+        System.out.println(chars);
     }
 
-    public char[] rotateWord(char[] chas){
+    public void rotateWord(char[] chas){
         int l=0;
         int r=chas.length-1;
         while (l<r){
@@ -40,7 +41,7 @@ public class Rotate {
                 l=r=r+1;
             }
         }
-        return  chas;
+
     }
 
     public char[] rotateWord2(char[] chas,int size){
