@@ -1,20 +1,22 @@
 package com.yanglk.algorithm.backtrack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.yanglk.algorithm.offer.Str;
+
+import java.util.*;
 
 public class Combine {
     public Combine() {
     }
 
-    public static void main(String[] args) {
-        int[] nums={2,1,2};
-        List<List<Integer>> l;
-        Combine combine=new Combine();
-       //l=combine.combine(5,3);
-        //System.out.println(combine.combinationSum(nums,5));
-        System.out.println(combine.subsetsWithDup(nums));
+    public static void main1(String[] args) {
+//        int[] nums={2,1,2};
+//        List<List<Integer>> l;
+//        Combine combine=new Combine();
+//       //l=combine.combine(5,3);
+//        //System.out.println(combine.combinationSum(nums,5));
+//        System.out.println(combine.subsetsWithDup(nums));
+
+        new Combine().generateParenthesis(3);
     }
     public List<List<Integer>> combine(int n,int k){
         List<List<Integer>> lists=new ArrayList<>();
@@ -227,16 +229,176 @@ public class Combine {
             list.remove(list.size()-1);
         }
     }
-    public List<String> restoreIpAddresses(String s){
-        if (s.length()>12||s.length()<4)
+    boolean f=false;
+    public boolean exist(char[][] board, String word) {
+        if (board==null||board.length==0)
+            return false;
+        int m=board.length;
+        int n=board[0].length;
+        boolean[][] visit=new boolean[m][n];
+        exist1(board,visit,word,0,-1,-1);
+        return  f;
+
+    }
+
+    public void exist1(char[][] board, boolean[][] visit, String word,int index,int last_i,int last_j) {
+        if (index==word.length()){
+            f=true;
+            return;
+        }
+
+        for (int i = 0; i < visit.length; i++) {
+            if (f)
+                return;
+            for (int j = 0; j < visit[0].length; j++) {
+                if (!visit[i][j]&&board[i][j]==word.charAt(index)){
+                    if ((last_i==-1&&last_j==-1)||(Math.abs(last_i-i)==1&&Math.abs(last_j-j)==0)||(Math.abs(last_i-i)==0&&Math.abs(last_j-j)==1)){
+                        visit[i][j]=!visit[i][j];
+                        index++;
+                        exist1(board,visit,word,index,i,j);
+                        index--;
+                        visit[i][j]=!visit[i][j];
+
+                    }
+
+                }
+            }
+        }
+
+    }
+    List<String> list=new ArrayList<>();
+    public List<String> generateParenthesis(int n) {
+
+        generateParenthesis1(n,new StringBuilder(),new int[]{1,1});
+        return list;
+    }
+    public void generateParenthesis1(int n,StringBuilder sb,int[] count) {
+        if (sb.length()==n*2){
+            list.add(sb.toString());
+            return;
+        }
+        if (count[0]>count[1]){
+            char[] chars={'(',')'};
+            for (int i = 0; i < chars.length; i++) {
+                if (count[i]<n+1){
+                    sb.append(chars[i]);
+                    count[i]++;
+                    generateParenthesis1(n,sb,count);
+                    sb.deleteCharAt(sb.length()-1);
+                    count[i]--;
+                }
+
+            }
+        }
+        if (count[0]==count[1]){
+            sb.append('(');
+            count[0]++;
+            generateParenthesis1(n,sb,count);
+            sb.deleteCharAt(sb.length()-1);
+            count[0]--;
+        }
+//        else{
+//            sb.deleteCharAt(sb.length()-1);
+//            count[0]--;
+//        }
+
+
+    }
+
+    public List<String> restoreIpAddresses(String s) {
+        if (s.length()>16)
             return null;
-        int[] vis=new int[s.length()];
-        List<String> list=new ArrayList<>();
-        return null;
+        restoreIpAddresses1(s,0,new ArrayList<>(),0);
+        return list;
+    }
+    public void restoreIpAddresses1(String s,int index,List<String> sb,int count) {
+        if (index==s.length()&&sb.size()==4&&count==s.length()){
+            StringBuilder stringBuilder=new StringBuilder();
+            for (String s1 : sb) {
+                stringBuilder.append(s1);
+                stringBuilder.append('.');
+            }
+            stringBuilder.deleteCharAt(stringBuilder.length()-1);
+            list.add(stringBuilder.toString());
+            return ;
+        }
+        for (int i = index; i < s.length(); i++) {
+            int temp=0;
+            if (s.charAt(i) == '0') {
+                sb.add(String.valueOf(0));
+                count=count+1;
+                restoreIpAddresses1(s,i+1,sb,count);
+                sb.remove(sb.size()-1);
+                count=count-1;
+                continue;
+            }
+            for (int j = 0; j < (3)&&i+j<s.length(); j++) {
+                temp=temp*10+s.charAt(i+j)-'0';
+                if (temp<256){
+                    sb.add(String.valueOf(temp));
+                    count=count+j+1;
+                    restoreIpAddresses1(s,i+j+1,sb,count);
+                    sb.remove(sb.size()-1);
+                    count=count-j-1;
+
+
+                }
+            }
+        }
 
 
     }
-    public void restoreIpAddresses1(String s,List<String> list,String ss){
+
+    static  List<Set<Integer>> l=new ArrayList<>();
+
+    public static void main(String[] args) {
+//        Scanner sc=new Scanner(System.in);
+//        int n=sc.nextInt();
+//        int[] opt =new int[n+2];
+//        opt[0]=1;
+//        opt[1]=1;
+//        opt[2]=1;
+//        opt[3]=1;
+//        opt[4]=2;
+//        for(int i=5;i<=n+1;i++){
+//            opt[i]=(opt[i-1]+opt[i-4])%1000000007;
+//        }
+//        System.out.println(opt[n+1]);
+        Scanner sc=new Scanner(System.in);
+        String[] s=sc.nextLine().split(",");
+        int n=Integer.parseInt(s[0]);
+        int m=Integer.parseInt(s[1]);
+        ArrayList<Integer> list=new ArrayList<>();
+        list.add(0);
+        list.add(0);
+        list.add(0);
+        bp1(n,m,new HashSet<>(),  list);
+        System.out.println(l.size());
 
     }
+    public  static void bp1(int n,int m,Set<Integer> s,ArrayList<Integer> c){
+        if (s.size()==m){
+            Set<Integer> ss=new HashSet<Integer>();
+            ss.addAll(c);
+            if (ss.size()==n){
+                l.add(s);
+                return;
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            if (!s.contains(i)){
+                for (int j = 0; j < c.size(); j++) {
+                    c.set(j,c.get(j)+1);
+                    s.add(i);
+                    bp1(n,m,s,c);
+                    s.remove(i);
+                    c.set(j,c.get(j)-1);
+                }
+
+            }
+
+        }
+
+    }
+
 }

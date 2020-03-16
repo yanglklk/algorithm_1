@@ -1,6 +1,8 @@
 package com.yanglk.algorithm.sort_;
 
 
+import com.sun.corba.se.impl.presentation.rmi.ExceptionHandlerImpl;
+
 import java.util.Arrays;
 
 public class Base_sort {
@@ -12,7 +14,7 @@ public class Base_sort {
     public static void main(String[] args) {
         //int[] nums={1,-2,4,2,-3,1,15,7,2,-4,9,-10};
         int[] nums={16,7,3,17,20,8};
-        nums=new Base_sort().merge_sort(nums);
+        nums=new Base_sort().quick_sort(nums);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -99,7 +101,7 @@ public class Base_sort {
 
     public int[] quick_sort(int[] nums){
 
-        return quick_sort_(nums,0,nums.length-1);
+        return quick_sort__(nums,0,nums.length-1);
     }
 
     public int[] quick_sort_(int[] nums,int l1,int r1){
@@ -122,6 +124,25 @@ public class Base_sort {
         nums[l]=p;
         nums=quick_sort_(nums,l1,l);
         nums=quick_sort_(nums,l+1,r1);
+        return nums;
+    }
+
+    public int[] quick_sort__(int[] nums,int l1,int r1){
+        if (l1>=r1)
+            return nums;
+        int l=l1,r=r1;
+        int p=nums[l];
+        while (l<r){
+            while (nums[r]>=p&&l<r)
+                r--;
+            nums[l]=nums[r];
+            while (nums[l]<=p&&l<r)
+                l++;
+            nums[r]=nums[l];
+        }
+        nums[l]=p;
+        quick_sort__(nums,l1,l);
+        quick_sort__(nums,l+1,r1);
         return nums;
     }
 
@@ -245,6 +266,5 @@ public class Base_sort {
         }
         return nums;
     }
-
 
 }
