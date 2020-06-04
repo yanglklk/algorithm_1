@@ -6,5 +6,6 @@ public class Main {
 	// write your code here
         System.out.println("add git");
         System.out.println("set git");
+        System.out.println("get git");
     }
 }
