@@ -151,7 +151,7 @@ public class Bianxing {
 //                    f = l;
 //            }
 //        }
-        System.out.println("ok");
+        
         int j=chas.length - 1;
         for (int i = chas.length - 1; i >= 0; i--) {
             if (chas[i]!='*'){
