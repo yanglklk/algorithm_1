@@ -1,13 +1,6 @@
-package com.yanglk.algorithm.xiaozhao_2019;
+package com.yanglk.algorithm.xiaozhao_2019.meituan;
 
-import com.yanglk.algorithm.offer.Str;
-import com.yanglk.algorithm.string_.MinDistance;
-import sun.awt.datatransfer.DataTransferer;
-
-import javax.sound.midi.Soundbank;
-import java.nio.channels.NonWritableChannelException;
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
 
 public class MaiTuan {
     public static void main_(String[] args) {
