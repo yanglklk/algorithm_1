@@ -45,3 +45,44 @@ public class MyQueue {
         return stack.empty();
     }
 }
+class MyQueue1 {
+
+    Stack<Integer> stack;
+    Stack<Integer> help;
+    public MyQueue1(){
+        stack=new Stack<>();
+        help=new Stack<>();
+    }
+    public void push(int x){
+       help.push(x);
+    }
+    public int pop(){
+        if (stack.empty()){
+            if (help.empty()){
+                System.out.println("empty");
+            }
+            else {
+                while (!help.empty()){
+                    stack.push(help.pop());
+                }
+            }
+        }
+       return stack.pop();
+    }
+    public int top(){
+        if (stack.empty()){
+            if (help.empty()){
+                System.out.println("empty");
+            }
+            else {
+                while (!help.empty()){
+                    stack.push(help.pop());
+                }
+            }
+        }
+        return stack.peek();
+    }
+    public boolean empty(){
+        return stack.empty();
+    }
+}

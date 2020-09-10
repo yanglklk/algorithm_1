@@ -14,7 +14,7 @@ public class Base_sort {
     public static void main(String[] args) {
         //int[] nums={1,-2,4,2,-3,1,15,7,2,-4,9,-10};
         int[] nums={16,7,3,17,20,8};
-        nums=new Base_sort().quick_sort(nums);
+        nums=new Base_sort().heap_sort(nums);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -171,7 +171,8 @@ public class Base_sort {
          * i 要排序的节点
          * @return int[]
          **/
-
+//由于从0开始 左孩子 2*i+1
+        //先比较左孩子与父节点 若有右孩子 比较右孩子 还要比较后续
         int l=len/2-1;
         int id=2*i+1;
 
@@ -189,12 +190,15 @@ public class Base_sort {
                 }
             }
             i++;
+            id=2*i+1;
         }
 
         return  nums;
 
 
     }
+
+
 
     public int[] merge_sort(int[] nums){
         return merge_sort_(nums,0,nums.length-1);
