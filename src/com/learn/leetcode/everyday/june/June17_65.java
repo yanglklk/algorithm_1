@@ -64,6 +64,7 @@ public class June17_65 {
                 return false;
             }
         }
+        new June16_877().stoneGame(new int[]{0});
         return true;
     }
 }

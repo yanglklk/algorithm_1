@@ -4,7 +4,7 @@ public class June16_877 {
     public static void main(String[] args) {
 
     }
-    public boolean stoneGame(int[] piles) {
+    protected boolean stoneGame(int[] piles) {
         int n = piles.length;
        // dp[i][j] 是i到j之间 当前玩家与另一个玩家的最大差值
         // 当前能搞的最大差值就是 我选i dp[i+1][j] 对方 i+1 到 j 与我的差值 ，表示他-我 ，结合起来就是 我选i + 我- 他
