@@ -15,7 +15,7 @@ public class DateConvertTest {
         date= DateUtils.addWeeks(date,3);
         date = DateUtils.addDays(date ,-4);
         dateConvertTest.getWeekAndMonthAndYear(date);
-        Date start =new SimpleDateFormat("yyyy-MM-dd").parse("2021-10-01");
+        Date start =new SimpleDateFormat("yyyy-MM-DD").parse("2021-10-01");
         start = DateUtils.addMonths(start,1);
         System.out.println(start);
         System.out.println(null+"-"+null);
