@@ -7,24 +7,31 @@ import com.google.common.collect.Sets;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.zip.Adler32;
 
 public class LambdaTest {
     public static void main(String[] args) {
-//        Map<Integer,Integer> map = putAll(false);
+     //   Map<Integer,Integer> map1 = putAll(false);
 //        map.entrySet().stream().forEach(f-> System.out.println(f.getKey()+":"+f.getValue()));
-        AAA a1 = new AAA("1","yyy");
-        AAA a2 = new AAA(null,"yyy1");
-        AAA a3 = new AAA(null,null);
+        AAA a1 = new AAA("1",null);
+        AAA a2 = new AAA("2","yyy1");
+        AAA a3 = new AAA("3",null);
         AAA a4 = new AAA("1","yyy4");
         List<AAA> list = new ArrayList<>();
         list.add(a1);
         list.add(a2);
         list.add(a3);
         list.add(a4);
-        Map<String,String> map= new HashMap<>();
-        map =list.stream().collect(Collectors.toMap(AAA::getId,AAA::getName,(v1,v2)->v2));
-        System.out.println(map.entrySet().stream().collect(Collectors.toList()));
+//        Map<String,String> map= new HashMap<>();
+//        map =list.stream().collect(Collectors.toMap(AAA::getId,AAA::getName,(v1,v2)->v2));
+//        System.out.println(map.entrySet().stream().collect(Collectors.toList()));
+//
+        Map ma= Optional.ofNullable(list)
+                .orElse(new ArrayList<>())
+                .stream()
+                .collect(Collectors.groupingBy(AAA::getId));
+        System.out.println(ma);
 
 
 
@@ -38,8 +45,8 @@ public class LambdaTest {
         map1.put(1,3);
         map1.put(2,4);
         if (flag){
-            // 不能直接赋值使用 因为后面lambda中使用的一定要是final 类型
-            // map = map1;
+            // 不能直接赋值使用  map = map1 因为后面lambda中使用的一定要是final 类型
+            //
             // 可以使用 putAll 在再赋值 list set 同理 addAll
             map.putAll(map1);
         }
@@ -47,9 +54,18 @@ public class LambdaTest {
             list.stream().peek(f-> System.out.println(f)).collect(Collectors.toList()).stream().peek(f-> System.out.println("ff"+f)).collect(Collectors.toList()).forEach(System.out::println);
             //collect(Collectors.toList());
             //list.stream().forEach(f-> System.out.println(f));
-            //list.stream().map(f-> map.put(f,f*2));
+            List l = list.stream()
+                    .map(f->map.put(f,f*3))
+                    .collect(Collectors.toList());
             //list.stream().map(f-> map.put(f,f*2)).collect(Collectors.toList());
-            list.stream().forEach(f-> map.put(f,f*2));
+            //list.stream().forEach(f-> map.put(f,f*2));
+
+            Stream.of("one", "two", "three", "four")
+                    .filter(e -> e.length() > 3)
+                    .peek(e -> System.out.println("Filtered value: " + e))
+                    .map(String::toUpperCase)
+                    .peek(e -> System.out.println("Mapped value: " + e));
+                    //.collect(Collectors.toList());
         }
         return map;
     }

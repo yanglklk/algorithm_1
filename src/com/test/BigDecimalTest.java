@@ -1,5 +1,6 @@
 package com.test;
 
+import java.lang.instrument.Instrumentation;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Calendar;
@@ -24,6 +25,13 @@ public class BigDecimalTest {
         Date t = BigDecimalTest.addDays(d,-1);
         System.out.println(d);
         System.out.println(t);
+        BigDecimal bb = new BigDecimal("83134143.14");
+        BigDecimal aa = new BigDecimal("9313415416.86");
+        System.out.println("--------"+bb.divide(aa,12,RoundingMode.UP).multiply(aa).setScale(2,RoundingMode.DOWN));
+        //System.out.println((aa.multiply(new BigDecimal("0.88")))
+         //       .divide(new BigDecimal("100"), 2, RoundingMode.HALF_UP));
+        //System.out.println(BigDecimal.ZERO.compareTo(null));
+
     }
     public static Date getStartTime() {
         Calendar todayStart = Calendar.getInstance();
@@ -41,4 +49,5 @@ public class BigDecimalTest {
 
         return cal.getTime();
     }
+
 }

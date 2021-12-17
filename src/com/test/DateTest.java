@@ -1,7 +1,7 @@
 package com.test;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.math.BigDecimal;
+import java.util.*;
 
 public class DateTest {
     public static void main(String[] args) {
@@ -23,6 +23,34 @@ public class DateTest {
         System.out.println(d1);
         System.out.println(d2);
         System.out.println(d1.equals(d2));
+        BigDecimal b =new BigDecimal("0.01");
+        BigDecimal a =new BigDecimal("0.2");
+
+        System.out.println(a.multiply(b));
+        System.out.println(BigDecimal.ZERO.compareTo(new BigDecimal("")) < 0);
+        System.out.println("____"+String.valueOf(null));
+        System.out.println(d1.equals(null));
+        int i =10;
+        if (i>10){
+            System.out.println("12134");
+        }else if (i>6){
+            System.out.println("111");
+        }
+        int kk = 2147483647;
+        Long l = Long.valueOf(kk);
+        System.out.println(Math.pow(2,31));
+
+        List<Integer> ll = new ArrayList<>();
+//        ll.add(1);
+//        ll.add(null);
+//        ll.add(3);
+        for (Integer integer : ll) {
+            System.out.println(integer.hashCode());
+        }
+
+        System.out.println(new Date().before(null));
+
+
     }
 
     public static Date setHourAndMinuteAndSecond(Date target, int templateHour, int templateMinute, int templateSecond,int templateMillSecond) {
