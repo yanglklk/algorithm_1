@@ -2,6 +2,7 @@ package com.test;
 
 import org.apache.commons.lang.time.DateUtils;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,6 +20,14 @@ public class DateConvertTest {
         start = DateUtils.addMonths(start,1);
         System.out.println(start);
         System.out.println(null+"-"+null);
+        double result = 0.34;
+        DecimalFormat df = new DecimalFormat("0.00%");
+        String r = df.format(result);
+        System.out.println(r);
+        System.out.println("----");
+        System.out.println(CycleTypeEnum.MONTH.code.getClass());
+        System.out.println(CycleTypeEnum.MONTH.equals("1"));
+        System.out.println(Integer.valueOf("001"));
     }
     private Map<String,Integer> getWeekAndMonthAndYear(Date date) {
         Map<String,Integer> result =  new HashMap<String,Integer>();
@@ -40,5 +49,49 @@ public class DateConvertTest {
         result.put("month",month);
         result.put("week",week);
         return result;
+    }
+
+    enum CycleTypeEnum {
+        MONTH(1, "按月结算"),
+        WEEK(2, "按周结算"),
+        DAY(3, "按日结算"),;
+
+        private Integer code;
+
+        private String value;
+
+        CycleTypeEnum() {
+
+        }
+
+        public static String getValueByCode(Integer code) {
+            for (CycleTypeEnum bonusBackCodeEnum : CycleTypeEnum.values()) {
+                if (bonusBackCodeEnum.getCode().equals(code)) {
+                    return bonusBackCodeEnum.getValue();
+                }
+            }
+            return null;
+        }
+
+        CycleTypeEnum(Integer code, String value) {
+            this.code = code;
+            this.value = value;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
     }
 }
