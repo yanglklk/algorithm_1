@@ -1,0 +1,7 @@
+# Default ignored files
+/workspace.xml
+out/*
+*.class
+lib/*
+src/com/leetcode/editor/cn/doc/*
+src/com/leetcode/editor/cn/.DS_Store
