@@ -16,5 +16,6 @@ public class AtomicIntegerTest {
         }
         System.out.println(list.stream().skip(0).limit(10).collect(Collectors.toList()));
         System.out.println(list.subList(0,10));
+        System.out.println("new pants");
     }
 }
